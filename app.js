@@ -2,22 +2,18 @@ var RenderUrlsToFile, arrayOfUrls, system;
 
 system = require("system");
 
-
 RenderUrlsToFile = function (urls, callbackPerUrl, callbackFinal) {
     var next, page, retrieve, urlIndex, webpage, ert;
     urlIndex = 0;
     webpage = require("webpage");
     page = null;
 
-
     next = function (status, url) {
-
         page.close();
         callbackPerUrl(status, url);
 
         return retrieve();
     };
-
 
     retrieve = function () {
         var url;
@@ -27,7 +23,6 @@ RenderUrlsToFile = function (urls, callbackPerUrl, callbackFinal) {
             urlIndex++;
 
             page = webpage.create();
-
 
             page.onConsoleMessage = function (msg) {
                 console.log(msg);
@@ -94,16 +89,13 @@ RenderUrlsToFile = function (urls, callbackPerUrl, callbackFinal) {
     return retrieve();
 };
 
-
 arrayOfUrls = null;
 
 if (system.args.length > 1) {
     arrayOfUrls = Array.prototype.slice.call(system.args, 1);
 } else {
-
-    arrayOfUrls = ["latestfromtheworld.com/48/hallumotion-lgr/?adp=1"];
+    arrayOfUrls = ["onet.pl"];
 }
-
 
 RenderUrlsToFile(arrayOfUrls, (function (status, url) {
     if (status !== "success") {
